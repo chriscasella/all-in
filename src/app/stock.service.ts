@@ -6,5 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StockService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  getCompany(sym){
+    return this.http.get('https://api.iextrading.com/1.0/stock/'+ sym +'/company');
+  }
+
+  getQuote(sym){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/quote');
+  }
+
+
 }

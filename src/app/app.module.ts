@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { CompanySelectComponent } from './landing/company-select/company-select.component';
 import { CopyRightComponent } from './copy-right/copy-right.component';
+import { StockService } from './stock.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { CopyRightComponent } from './copy-right/copy-right.component';
     HttpClientModule,
     WavesModule
   ],
-  providers: [],
+  providers: [StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
