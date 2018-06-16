@@ -14,12 +14,12 @@ import { CompanyComponent } from './company/company.component';
 
 const Routes = [
   {
-    path: '/',
-    component:'component'
+    path: '', pathMatch: 'full',
+    component:'AppComponent'
   },
   {
-    path: 'quote',
-    component: 'stock-quote'
+    path: 'company/:companySymbol',
+    component: 'CompanyComponent'
   }
 ]
 
@@ -34,7 +34,7 @@ const Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule.forRoot(Routes),
     WavesModule
   ],
   providers: [StockService],
