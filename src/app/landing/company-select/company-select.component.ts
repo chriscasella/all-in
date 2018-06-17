@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { StockService } from '../../stock.service'
 import { EventEmitter } from 'events';
 import { Constants } from '../../constants';
+import { element } from 'protractor';
 @Component({
   selector: 'app-company-select',
   templateUrl: './company-select.component.html',
@@ -25,6 +26,10 @@ export class CompanySelectComponent implements OnInit {
       this.filteredSymbols = this.NASDAQ.filter(element => {
         return element.Symbol.includes(sym.toUpperCase());
       });
+      const filteredNYSESymbols = this.NYSE.filter(element =>{
+        return element.Symbol.includes(sym.toUpperCase());
+      });
+      this.filteredSymbols.concat(filteredNYSESymbols);
     } else {
       this.filteredSymbols = null;
     }
