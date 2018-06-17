@@ -22,6 +22,9 @@ export class CompanyComponent implements OnInit, OnChanges {
       this.StockService.getQuote(this.companySym).subscribe(res =>{
         console.log('quote', res);
         this.quote = res;
+      });
+      this.StockService.get1dyChart(this.companySym).subscribe(res => {
+        console.log('1dychart', res);
       })
     })
   }

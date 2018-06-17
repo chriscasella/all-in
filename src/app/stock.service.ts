@@ -16,5 +16,7 @@ export class StockService {
     return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/quote');
   }
 
-
+  get1dyChart(sym){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/chart/1d');
+  };
 }
