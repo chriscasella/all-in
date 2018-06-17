@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 
 import { WavesModule, InputsModule } from 'angular-bootstrap-md'
+import { ChartsModule } from 'ng2-charts';
 
 import { Constants } from './constants';
 
@@ -38,6 +39,7 @@ const Routes = [
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     HttpClientModule,
     RouterModule.forRoot(Routes),
     WavesModule
