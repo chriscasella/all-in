@@ -1,5 +1,10 @@
 <div class="container">
   <div style="margin-top: 400px;"></div>
+  <div class="row justify-content-center">
+    <strong>
+      <h1 class="h1 title-effect">All In</h1>
+    </strong>
+  </div>
   <div class="input-group md-form form-sm form-1 pl-0">
     <div class="input-group-prepend">
       <span
@@ -14,6 +19,13 @@
       type="text" 
       placeholder="Enter in Company Name or Symbol" 
       aria-label="Search" 
-      (keyup.enter)="getCompany(companySelector.value)" >
+      (keydown)="findSymbol(companySelector.value)"
+      (keyup.enter)="getCompany(companySelector.value)"
+      >
+  </div>
+  <div *ngIf="filteredSymbols != null" class="auto-complete-container" id="style-1">
+    <div #autocomplete *ngFor="let sym of filteredSymbols" class="form-control my-0 py-1 auto-complete symbol-item">
+     <div class="" (click)="getCompany(sym.Symbol)"> {{sym.Symbol}} <span class="company-name-ac">{{sym.Name}}</span></div>
+    </div>
   </div>
 </div>

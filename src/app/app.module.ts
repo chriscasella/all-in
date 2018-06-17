@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 
-import { WavesModule } from 'angular-bootstrap-md'
+import { WavesModule, InputsModule } from 'angular-bootstrap-md'
+
+import { Constants } from './constants';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -14,12 +16,12 @@ import { CompanyComponent } from './company/company.component';
 
 const Routes = [
   {
-    path: '/',
-    component:'component'
+    path: '', pathMatch: 'full',
+    component:'AppComponent'
   },
   {
-    path: 'quote',
-    component: 'stock-quote'
+    path: 'company/:companySymbol',
+    component: 'CompanyComponent'
   }
 ]
 
@@ -34,10 +36,10 @@ const Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule.forRoot(Routes),
     WavesModule
   ],
-  providers: [StockService],
+  providers: [Constants, StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
