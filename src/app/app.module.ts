@@ -17,11 +17,12 @@ import { CompanyComponent } from './company/company.component';
 const Routes = [
   {
     path: '', pathMatch: 'full',
-    component:'AppComponent'
+    component:AppComponent
   },
   {
     path: 'company/:companySymbol',
-    component: 'CompanyComponent'
+    pathMatch: 'full',
+    component: CompanyComponent
   }
 ]
 

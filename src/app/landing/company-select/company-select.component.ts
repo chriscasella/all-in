@@ -3,6 +3,7 @@ import { StockService } from '../../stock.service'
 import { EventEmitter } from 'events';
 import { Constants } from '../../constants';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-company-select',
   templateUrl: './company-select.component.html',
@@ -16,7 +17,8 @@ export class CompanySelectComponent implements OnInit {
   filteredSymbols = null;
 
   constructor(private StockService:StockService, 
-              private Constants:Constants) { }
+              private Constants:Constants,
+              private Router:Router) { }
 
   ngOnInit() {
   }
@@ -41,6 +43,8 @@ export class CompanySelectComponent implements OnInit {
       console.log(res);
       let resp:any = res;
       this.company.emit(resp);
+      this.Router.navigate(['/company/'+ resp.symbol]);
+      this.filteredSymbols = null;
     })
   }
 
