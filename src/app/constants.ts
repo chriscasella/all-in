@@ -1,4 +1,4 @@
-export default class Constants {
+export class Constants {
     NASDAQ = [
   {
     "Symbol": "PIH",

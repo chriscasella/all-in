@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 
-import { WavesModule } from 'angular-bootstrap-md'
+import { WavesModule, InputsModule } from 'angular-bootstrap-md'
+
+import { Constants } from './constants';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -37,7 +39,7 @@ const Routes = [
     RouterModule.forRoot(Routes),
     WavesModule
   ],
-  providers: [StockService],
+  providers: [Constants, StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

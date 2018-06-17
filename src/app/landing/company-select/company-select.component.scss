@@ -18,10 +18,21 @@
     border: 1px solid #ffca28;
 }
 
-@keyframes titleEffect {
-  from { opacity: 0}
-  to   { opacity: 1}
+.auto-complete{
+    width:100%;
+    max-height: 300px;
 }
+
+.company-name-ac{
+    font-size: small;
+}
+
 .title-effect{
-   animation: 1s ease-in 0s 1 titleEffect;
+    animation: 1s ease-in 0s 1 titleEffect;
+}
+
+
+@keyframes titleEffect {
+    from { opacity: 0}
+    to   { opacity: 1}
 }

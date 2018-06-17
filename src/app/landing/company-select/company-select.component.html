@@ -19,6 +19,13 @@
       type="text" 
       placeholder="Enter in Company Name or Symbol" 
       aria-label="Search" 
-      (keyup.enter)="getCompany(companySelector.value)" >
+      (keydown)="findSymbol(companySelector.value)"
+      (keyup.enter)="getCompany(companySelector.value)"
+      >
+  </div>
+  <div *ngIf="filteredSymbols != null">
+    <div #autocomplete *ngFor="let sym of filteredSymbols" class="form-control my-0 py-1 auto-complete">
+      {{sym.Symbol}} <span class="company-name-ac">{{sym.Name}}</span>
+    </div>
   </div>
 </div>

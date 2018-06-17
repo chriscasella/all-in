@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { StockService } from '../../stock.service'
 import { EventEmitter } from 'events';
+import { Constants } from '../../constants';
 @Component({
   selector: 'app-company-select',
   templateUrl: './company-select.component.html',
@@ -8,10 +9,26 @@ import { EventEmitter } from 'events';
 })
 export class CompanySelectComponent implements OnInit {
   @Output() company = new EventEmitter();
+  
+  NASDAQ = this.Constants.NASDAQ;
+  NYSE = this.Constants.NYSE;
+  filteredSymbols = null;
 
-  constructor(private StockService:StockService) { }
+  constructor(private StockService:StockService, 
+              private Constants:Constants) { }
 
   ngOnInit() {
+  }
+
+  findSymbol(sym:string){
+    if(sym != ""){
+      this.filteredSymbols = this.NASDAQ.filter(element => {
+        return element.Symbol.includes(sym.toUpperCase());
+      });
+    } else {
+      this.filteredSymbols = null;
+    }
+     
   }
 
   getCompany(sym:string){
