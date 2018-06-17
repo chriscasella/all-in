@@ -13,6 +13,7 @@ import { CompanySelectComponent } from './landing/company-select/company-select.
 import { CopyRightComponent } from './copy-right/copy-right.component';
 import { StockService } from './stock.service';
 import { CompanyComponent } from './company/company.component';
+import { NavComponent } from './nav/nav.component';
 
 const Routes = [
   {
@@ -32,7 +33,8 @@ const Routes = [
     LandingComponent,
     CompanySelectComponent,
     CopyRightComponent,
-    CompanyComponent
+    CompanyComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
