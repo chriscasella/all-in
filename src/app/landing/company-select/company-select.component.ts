@@ -40,7 +40,7 @@ export class CompanySelectComponent implements OnInit {
 
   getCompany(sym:string){
     this.StockService.getQuote(sym).subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
       let resp:any = res;
       this.company.emit(resp);
       this.Router.navigate(['/company/'+ resp.symbol]);

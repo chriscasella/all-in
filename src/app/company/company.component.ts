@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StockService } from '../stock.service';
 
 @Component({
   selector: 'app-company',
@@ -7,9 +9,21 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class CompanyComponent implements OnInit, OnChanges {
   @Input() company:null;
-  constructor() { }
+  
+  companySym;
+  quote;
+  constructor(private route:ActivatedRoute,
+              private StockService:StockService) { }
 
   ngOnInit() {
+    this.route.params.subscribe( res => {
+      this.companySym = res['companySymbol']
+      console.log(this.companySym);
+      this.StockService.getQuote(this.companySym).subscribe(res =>{
+        console.log('quote', res);
+        this.quote = res;
+      })
+    })
   }
 
   ngOnChanges(){
