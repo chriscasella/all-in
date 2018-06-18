@@ -10,21 +10,29 @@
   </div>
   <div *ngIf="lineChartLabels.length > 0">
     <canvas 
-      baseChart width="400" 
-      height="400" 
-      [datasets]="lineChartData" 
-      [labels]="lineChartLabels" 
-      [options]="lineChartOptions"
-      [colors]="lineChartColors" 
-      [legend]="lineChartLegend" 
-      [chartType]="lineChartType"
-      ></canvas>   
+    baseChart width="400" 
+    height="400" 
+    [datasets]="lineChartData" 
+    [labels]="lineChartLabels" 
+    [options]="lineChartOptions"
+    [colors]="lineChartColors" 
+    [legend]="lineChartLegend" 
+    [chartType]="lineChartType"
+    ></canvas>   
   </div>
-    <div class="row">
-        <button *ngFor="let button of chartButtons"
-        (click)="getChartData(button.type); setActiveChart(button.type); wipeCharts();"
-        [disabled]="activeButton == button.type"
-        mat-button>
-        {{button.desc}}</button>
-    </div>
+  <div class="row">
+    <button *ngFor="let button of chartButtons"
+    (click)="getChartData(button.type); setActiveChart(button.type); wipeCharts();"
+    [disabled]="activeButton == button.type"
+    mat-button>
+    {{button.desc}}</button>
+  </div>
+  <div class="row justify-content-center"> 
+    <button 
+      type="button" 
+      class="btn btn-outline-default" 
+      mdbWavesEffect
+      (click)="goAllIn();"
+      >Go All In?</button>
+  </div>
 </div>

@@ -22,6 +22,7 @@ import { StockService } from './stock.service';
 import { CompanyComponent } from './company/company.component';
 import { NavComponent } from './nav/nav.component';
 import { InfoCardComponent } from './company/info-card/info-card.component';
+import { AllInComponent } from './company/all-in/all-in.component';
 
 const Routes = [
   {
@@ -43,7 +44,8 @@ const Routes = [
     CopyRightComponent,
     CompanyComponent,
     NavComponent,
-    InfoCardComponent
+    InfoCardComponent,
+    AllInComponent
   ],
   imports: [
     BrowserModule,

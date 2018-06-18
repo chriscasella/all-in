@@ -10,6 +10,7 @@ import { HttpResponse } from 'selenium-webdriver/http';
 })
 export class CompanyComponent implements OnInit, OnChanges {
   @Output() CompanyInfoCard:EventEmitter<any> = new EventEmitter();
+  @Output() CompanySymbol:EventEmitter<any> = new EventEmitter();
 
   companySym;
   quote;
@@ -93,6 +94,7 @@ export class CompanyComponent implements OnInit, OnChanges {
           text2: res.sector
         }
         this.CompanyInfoCard.emit(companyInfo);
+        this.CompanySymbol.emit(this.companySym);
         this.quote = res;
       });
       this.StockService.getChartData(this.companySym, '1m').subscribe( res => {
@@ -163,7 +165,7 @@ export class CompanyComponent implements OnInit, OnChanges {
     const lcd = this.lineChartData[0].data;
     const highMinusLow = lcd[lcd.length - 1] - lcd[0];
     (highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
-    console.log('chartlabels', this.lineChartLabels)
+    // console.log('chartlabels', this.lineChartLabels)
   }
 
   setActiveChart(type){
@@ -176,6 +178,7 @@ export class CompanyComponent implements OnInit, OnChanges {
     this.lineChartData = [];
     this.lineChartLabels = [];
   };
+
   ngOnChanges(){
   }
 
