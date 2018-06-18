@@ -3,11 +3,17 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 
+// Material Modules
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+// External Libraries
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WavesModule, InputsModule } from 'angular-bootstrap-md'
 import { ChartsModule } from 'ng2-charts';
-
+// constants
 import { Constants } from './constants';
-
+// My Components
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { CompanySelectComponent } from './landing/company-select/company-select.component';
@@ -15,6 +21,7 @@ import { CopyRightComponent } from './copy-right/copy-right.component';
 import { StockService } from './stock.service';
 import { CompanyComponent } from './company/company.component';
 import { NavComponent } from './nav/nav.component';
+import { InfoCardComponent } from './company/info-card/info-card.component';
 
 const Routes = [
   {
@@ -35,14 +42,19 @@ const Routes = [
     CompanySelectComponent,
     CopyRightComponent,
     CompanyComponent,
-    NavComponent
+    NavComponent,
+    InfoCardComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ChartsModule,
     HttpClientModule,
     RouterModule.forRoot(Routes),
-    WavesModule
+    WavesModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [Constants, StockService],
   bootstrap: [AppComponent]

@@ -19,7 +19,7 @@ export class StockService {
   get1dyChart(sym){
     return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/chart/1d');
   };
-  get1mChart(sym){
-    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/chart/1m');
+  getChartData(sym, type){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/chart/' + type);
   };
 }
