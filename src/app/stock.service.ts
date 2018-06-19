@@ -22,4 +22,9 @@ export class StockService {
   getChartData(sym, type){
     return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/chart/' + type);
   };
+
+  //For All In Calculations
+  getFinancials(sym){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym +'/financials');
+  }
 }

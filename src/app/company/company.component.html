@@ -27,12 +27,7 @@
     mat-button>
     {{button.desc}}</button>
   </div>
-  <div class="row justify-content-center"> 
-    <button 
-      type="button" 
-      class="btn btn-outline-default" 
-      mdbWavesEffect
-      (click)="goAllIn();"
-      >Go All In?</button>
-  </div>
+  <app-all-in
+    [CompanySymbol]="CompanySymbol"
+  ></app-all-in>
 </div>
