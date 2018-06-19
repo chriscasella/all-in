@@ -35,6 +35,7 @@ export class AllInComponent implements OnInit, OnChanges {
   f;//financials object
   s;//stats object
   q; //quote object
+  e; //earnings object
 
   results = {
     pb: {
@@ -67,14 +68,19 @@ export class AllInComponent implements OnInit, OnChanges {
   }
 
   getFinancials(){
-    this.StockService.getFinancials(this.companySym).subscribe(finRes =>{
+    this.StockService.getFinancials(this.companySym).subscribe(finRes => {
       console.log('finRes',finRes);
       this.f = finRes.financials;
       this.StockService.getStats(this.companySym).subscribe(statsRes => {
         this.s = statsRes;
-        this.StockService.getQuote(this.companySym).subscribe(quoteRes =>{
+        this.StockService.getQuote(this.companySym).subscribe(quoteRes => {
           this.q = quoteRes;
           this.calcPbRatio();
+          this.StockService.getEarnings(this.companySym).subscribe(earnRes => {
+            this.e = earnRes.earnings;
+            this.calcEps();
+
+          })
         });
       });
     });
@@ -91,6 +97,15 @@ export class AllInComponent implements OnInit, OnChanges {
     this.results.pb.pbRatio = pbRatioCalc;
     pbRatioCalc > 1 ? this.results.pb.bool = true : this.results.pb.bool = false;
     console.log(pbRatioCalc, this.results);
+  };
+  calcEps(){
+    //more info https://www.nasdaq.com/investing/dozen/earnings-per-share.aspx
+    const recentEps = this.e[0].actualEPS;
+    const lastEPS = this.e[3].actualEPS;
+    const epsCalc = recentEps - lastEPS;
+    this.results.eps.actualEpsDiff = epsCalc;
+    epsCalc > 0 ? this.results.eps.bool = true : this.results.eps.bool = false;
+    console.log(this.e);
   };
 
 }
