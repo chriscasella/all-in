@@ -24,7 +24,10 @@ export class StockService {
   };
 
   //For All In Calculations
-  getFinancials(sym){
+  getFinancials(sym){ 
     return this.http.get('https://api.iextrading.com/1.0/stock/' + sym +'/financials');
+  }
+  getStats(sym){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/stats');
   }
 }
