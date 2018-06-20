@@ -32,10 +32,10 @@ interface AllInInterface {
 export class AllInComponent implements OnInit, OnChanges {
   @Input() CompanySymbol;
   companySym;
-  f;//financials object
-  s;//stats object
-  q; //quote object
-  e; //earnings object
+  f:any;//financials object
+  s:any;//stats object
+  q:any; //quote object
+  e:any; //earnings object
 
   results = {
     pb: {
@@ -43,12 +43,16 @@ export class AllInComponent implements OnInit, OnChanges {
       pbRatio: 0
     },
     revenue: {
-      bool: false,
+      bool: false
 
     },
     eps: {
       bool: false,
       actualEpsDiff: 0
+    },
+    roe:{
+      bool:false,
+      roe: 0
     }
   }
   constructor(public StockService:StockService) { }
@@ -68,9 +72,12 @@ export class AllInComponent implements OnInit, OnChanges {
   }
 
   getFinancials(){
+    //waterfall all http calls then check to makesure the responses arent empty then do checks.
+    //otherwise you have to let user know if calc is available.
     this.StockService.getFinancials(this.companySym).subscribe(finRes => {
-      console.log('finRes',finRes);
+      console.log('finRes', finRes.financials);
       this.f = finRes.financials;
+      this.calcRoe();
       this.StockService.getStats(this.companySym).subscribe(statsRes => {
         this.s = statsRes;
         this.StockService.getQuote(this.companySym).subscribe(quoteRes => {
@@ -96,7 +103,6 @@ export class AllInComponent implements OnInit, OnChanges {
     const pbRatioCalc = mpps / bvps;
     this.results.pb.pbRatio = pbRatioCalc;
     pbRatioCalc > 1 ? this.results.pb.bool = true : this.results.pb.bool = false;
-    console.log(pbRatioCalc, this.results);
   };
   calcEps(){
     //more info https://www.nasdaq.com/investing/dozen/earnings-per-share.aspx
@@ -105,7 +111,17 @@ export class AllInComponent implements OnInit, OnChanges {
     const epsCalc = recentEps - lastEPS;
     this.results.eps.actualEpsDiff = epsCalc;
     epsCalc > 0 ? this.results.eps.bool = true : this.results.eps.bool = false;
-    console.log(this.e);
   };
-
+  calcRoe(){
+    //more info https://www.investopedia.com/terms/r/returnonequity.asp
+    const netIncome = this.f.map(element => element.netIncome).reduce((acc, val)=>{
+      return acc + val;
+    })/(this.f.length);
+    const she = this.f.map(element => element.shareholderEquity).reduce((acc, val)=>{
+      return acc + val;
+    })/(this.f.length); //shareholder equity
+    let roe = (netIncome / she) * 1000;
+    roe >= 60 ? this.results.roe.bool = true : this.results.roe.bool = false;
+    this.results.roe.roe = roe;
+    console.log(this.results)
 }
