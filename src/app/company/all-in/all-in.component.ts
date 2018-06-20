@@ -53,6 +53,10 @@ export class AllInComponent implements OnInit, OnChanges {
     roe:{
       bool:false,
       roe: 0
+    },
+    epsSurprise:{
+      bool:false;,
+      epsSurprise: 0
     }
   }
   constructor(public StockService:StockService) { }
@@ -86,7 +90,7 @@ export class AllInComponent implements OnInit, OnChanges {
           this.StockService.getEarnings(this.companySym).subscribe(earnRes => {
             this.e = earnRes.earnings;
             this.calcEps();
-
+            this.calcEpsSurprise();
           })
         });
       });
@@ -124,4 +128,12 @@ export class AllInComponent implements OnInit, OnChanges {
     roe >= 60 ? this.results.roe.bool = true : this.results.roe.bool = false;
     this.results.roe.roe = roe;
     console.log(this.results)
+  }
+  calcEpsSurprise(){
+    const epsSurprise = this.e.map(element => element.EPSSurpriseDollar).reduce((acc, val) =>{
+      return acc + val;
+    });
+    this.results.epsSurprise.epsSurprise = epsSurprise;
+    epsSurprise > 0 ? this.results.epsSurprise.bool = true : this.results.epsSurprise.bool = false; 
+  };
 }
