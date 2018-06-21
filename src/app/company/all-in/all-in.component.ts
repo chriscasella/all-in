@@ -42,10 +42,6 @@ export class AllInComponent implements OnInit, OnChanges {
       bool: false,
       pbRatio: 0
     },
-    revenue: {
-      bool: false
-
-    },
     eps: {
       bool: false,
       actualEpsDiff: 0
@@ -61,6 +57,10 @@ export class AllInComponent implements OnInit, OnChanges {
     earningsGrowth:{
       bool: false,
       yap: 0,
+    },
+    pegRatio:{
+      bool: false,
+      peg: 0
     }
   }
   constructor(public StockService:StockService) { }
@@ -85,24 +85,28 @@ export class AllInComponent implements OnInit, OnChanges {
     this.StockService.getFinancials(this.companySym).subscribe(finRes => {
       console.log('finRes', finRes.financials);
       this.f = finRes.financials;
-      this.calcRoe();
       this.StockService.getStats(this.companySym).subscribe(statsRes => {
         this.s = statsRes;
         this.StockService.getQuote(this.companySym).subscribe(quoteRes => {
           this.q = quoteRes;
-          this.calcPbRatio();
           this.StockService.getEarnings(this.companySym).subscribe(earnRes => {
             this.e = earnRes.earnings;
-            this.calcEps();
-            this.calcEpsSurprise();
-            this.calcEarningsGrowth();
             console.log(this.e)
+            this.initCallStack();
           })
         });
       });
     });
   };
 
+  initCallStack(){
+    this.calcRoe();
+    this.calcPbRatio();
+    this.calcPegRatio();
+    this.calcEps();
+    this.calcEpsSurprise();
+    this.calcEarningsGrowth();
+  };
   calcPbRatio(){
     //more info https://www.investopedia.com/terms/p/price-to-bookratio.asp
     const tA = this.f[0].totalAssets;
@@ -151,4 +155,16 @@ export class AllInComponent implements OnInit, OnChanges {
     res.yap = yap;
   };
 
+  calcPegRatio(){
+    const growth = this.e[0].yearAgoChangePercent;
+    const eps = this.e.map(element => element.actualEPS).reduce((acc, val) =>{
+      return acc + val;
+    })/ (this.e.length);
+    const price = this.q.latestPrice;
+    const pe = price/eps;
+    const peg = pe/growth;
+    const res = this.results.pegRatio;
+    res.peg = peg;
+    peg < 1 ? res.bool = true : res.bool = false;
+  };
 }
