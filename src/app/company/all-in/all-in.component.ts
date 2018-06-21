@@ -55,8 +55,12 @@ export class AllInComponent implements OnInit, OnChanges {
       roe: 0
     },
     epsSurprise:{
-      bool:false;,
+      bool:false,
       epsSurprise: 0
+    },
+    earningsGrowth:{
+      bool: false,
+      yap: 0,
     }
   }
   constructor(public StockService:StockService) { }
@@ -91,6 +95,8 @@ export class AllInComponent implements OnInit, OnChanges {
             this.e = earnRes.earnings;
             this.calcEps();
             this.calcEpsSurprise();
+            this.calcEarningsGrowth();
+            console.log(this.e)
           })
         });
       });
@@ -136,4 +142,13 @@ export class AllInComponent implements OnInit, OnChanges {
     this.results.epsSurprise.epsSurprise = epsSurprise;
     epsSurprise > 0 ? this.results.epsSurprise.bool = true : this.results.epsSurprise.bool = false; 
   };
+
+  calcEarningsGrowth(){
+    const ecp = this.e[0].estimatedChangePercent;
+    const yap = this.e[0].yearAgoChangePercent;
+    const res = this.results.earningsGrowth;
+    (ecp > 0 && yap > 0) ? res.bool = true : res.bool = false;
+    res.yap = yap;
+  };
+
 }
