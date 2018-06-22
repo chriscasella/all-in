@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 import { StockService } from '../../stock.service';
 
 
@@ -31,6 +33,7 @@ interface AllInInterface {
 })
 export class AllInComponent implements OnInit, OnChanges {
   @Input() CompanySymbol;
+  @Output() AllinResults = new EventEmitter();
   companySym;
   f:any;//financials object
   s:any;//stats object
