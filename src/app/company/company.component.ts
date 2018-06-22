@@ -137,11 +137,11 @@ export class CompanyComponent implements OnInit, OnChanges {
     };
     this.lineChartData.push(chartPayLoad);
     
-        const lcd = this.lineChartData[0].data;
-        console.log(lcd)
-        const highMinusLow = lcd[lcd.length - 1] - lcd[0];
-        ( highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
-        // console.log('chartPayLoad', chartPayLoad);
+    const lcd = this.lineChartData[0].data;
+    console.log(lcd)
+    const highMinusLow = lcd[lcd.length - 1] - lcd[0];
+    ( highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
+    // console.log('chartPayLoad', chartPayLoad);
 
   };
 
