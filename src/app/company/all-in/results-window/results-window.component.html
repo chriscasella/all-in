@@ -1,5 +1,39 @@
-<div class="container" *ngIf="display">
+<div class="container all-in-container" *ngIf="display">
     <div class="row">
-        {{results.earningsGrowth.yap}}
+        <div class="col">
+            <h3>Earnings Growth</h3>
+            {{results.earningsGrowth.yap}}
+            {{results.earningsGrowth.bool}}
+            <i class="fa check-square-o"  *ngIf="results.earningsGrowth.bool" aria-hidden="true"></i>
+            <i class="fa window-close" *ngIf="!results.earningsGrowth.bool"></i>
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Actual EPS Differential</h3>
+            {{results.eps.actualEpsDiff}}
+            {{results.eps.bool}}
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>EPS Surprise</h3>
+            {{results.epsSurprise.epsSurprise}}
+            {{results.epsSurprise.bool}}
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>PEG Ratio</h3>
+            {{results.pegRatio.peg}}
+            {{results.pegRatio.bool}}
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Return on Earnings</h3>
+            {{results.roe.roe}}
+            {{results.roe.bool}}
+        </div>    
     </div>
 </div>
