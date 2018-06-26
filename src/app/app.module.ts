@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
+import 'rxjs'
 
 // Material Modules
 import { MatTabsModule } from '@angular/material/tabs';
@@ -23,6 +24,8 @@ import { CompanyComponent } from './company/company.component';
 import { NavComponent } from './nav/nav.component';
 import { InfoCardComponent } from './company/info-card/info-card.component';
 import { AllInComponent } from './company/all-in/all-in.component';
+import { ResultsWindowComponent } from './company/all-in/results-window/results-window.component';
+
 
 const Routes = [
   {
@@ -45,7 +48,8 @@ const Routes = [
     CompanyComponent,
     NavComponent,
     InfoCardComponent,
-    AllInComponent
+    AllInComponent,
+    ResultsWindowComponent
   ],
   imports: [
     BrowserModule,

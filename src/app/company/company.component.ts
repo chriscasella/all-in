@@ -125,11 +125,15 @@ export class CompanyComponent implements OnInit, OnChanges {
     this.lineChartData.length > 0 ? this.lineChartData = [] : '';
     this.lineChartLabels.length > 0 ? this.lineChartLabels = [] : '';
     const chartLabels = data.map(element => {
-      return element.label;
+       if (element.marketAverage > -1){
+        return element.label;
+      } ;
     });
     this.lineChartLabels = chartLabels;
     const chartData = data.map(element => {
-      return element.marketAverage;
+      if (element.marketAverage > -1){
+        return element.marketAverage;
+      } ;
     });
     const chartPayLoad = {
       data: chartData,
@@ -140,7 +144,7 @@ export class CompanyComponent implements OnInit, OnChanges {
     const lcd = this.lineChartData[0].data;
     console.log(lcd)
     const highMinusLow = lcd[lcd.length - 1] - lcd[0];
-    ( highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
+    (highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
     // console.log('chartPayLoad', chartPayLoad);
 
   };

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 import { StockService } from '../../stock.service';
 
 
@@ -81,7 +80,7 @@ export class AllInComponent implements OnInit, OnChanges {
   goAllIn(){
     this.getFinancials();
   }
-
+  
   getFinancials(){
     //waterfall all http calls then check to makesure the responses arent empty then do checks.
     //otherwise you have to let user know if calc is available.
@@ -102,6 +101,8 @@ export class AllInComponent implements OnInit, OnChanges {
     });
   };
 
+
+
   initCallStack(){
     this.calcRoe();
     this.calcPbRatio();
@@ -109,6 +110,11 @@ export class AllInComponent implements OnInit, OnChanges {
     this.calcEps();
     this.calcEpsSurprise();
     this.calcEarningsGrowth();
+    this.emitResults();
+  };
+
+  emitResults(){
+    this.AllinResults.emit(this.results);
   };
   calcPbRatio(){
     //more info https://www.investopedia.com/terms/p/price-to-bookratio.asp
