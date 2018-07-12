@@ -1,12 +1,14 @@
 <div class="container all-in-container" *ngIf="display">
     <div class="row">
-        <div class="col">
+        <div class="col-lg-12">
             <h3>Earnings Growth</h3>
-            {{results.earningsGrowth.yap}}
-            {{results.earningsGrowth.bool}}
-            <i class="fa check-square-o"  *ngIf="results.earningsGrowth.bool" aria-hidden="true"></i>
-            <i class="fa window-close" *ngIf="!results.earningsGrowth.bool"></i>
+            <span *ngIf="results.earningsGrowth.bool" ><span class="fa fa-check-square"aria-hidden="true"></span></span>
+            <span *ngIf="!results.earningsGrowth.bool"><span class="fa fa-window-close" ></span></span>
         </div>    
+    </div>
+    <div>
+        {{results.earningsGrowth.yap}}
+        {{results.earningsGrowth.bool}}
     </div>
     <div class="row">
         <div class="col">

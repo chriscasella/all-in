@@ -7,6 +7,7 @@ import 'rxjs'
 // Material Modules
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // External Libraries
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,10 @@ import { NavComponent } from './nav/nav.component';
 import { InfoCardComponent } from './company/info-card/info-card.component';
 import { AllInComponent } from './company/all-in/all-in.component';
 import { ResultsWindowComponent } from './company/all-in/results-window/results-window.component';
+
+import fontawesome from '@fortawesome/fontawesome';
+import {faCheckSquare, faWindowClose} from '@fortawesome/fontawesome-free-solid';
+
 
 
 const Routes = [
@@ -60,9 +65,10 @@ const Routes = [
     WavesModule,
     MatTabsModule,
     MatButtonModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule
   ],
   providers: [Constants, StockService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

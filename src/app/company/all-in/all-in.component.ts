@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { StockService } from '../../stock.service';
 
 
+
 interface AllInInterface {
   pb:{
     bool:boolean,
@@ -65,7 +66,8 @@ export class AllInComponent implements OnInit, OnChanges {
       peg: 0
     }
   }
-  constructor(public StockService:StockService) { }
+  constructor(public StockService:StockService) { 
+  }
 
   ngOnInit() {
   }
@@ -84,14 +86,14 @@ export class AllInComponent implements OnInit, OnChanges {
   getFinancials(){
     //waterfall all http calls then check to makesure the responses arent empty then do checks.
     //otherwise you have to let user know if calc is available.
-    this.StockService.getFinancials(this.companySym).subscribe(finRes => {
-      console.log('finRes', finRes.financials);
+    this.StockService.getFinancials(this.companySym).subscribe((finRes: any) => {
       this.f = finRes.financials;
-      this.StockService.getStats(this.companySym).subscribe(statsRes => {
+      console.log('finRes', this.f);
+      this.StockService.getStats(this.companySym).subscribe((statsRes: any) => {
         this.s = statsRes;
-        this.StockService.getQuote(this.companySym).subscribe(quoteRes => {
+        this.StockService.getQuote(this.companySym).subscribe((quoteRes: any) => {
           this.q = quoteRes;
-          this.StockService.getEarnings(this.companySym).subscribe(earnRes => {
+          this.StockService.getEarnings(this.companySym).subscribe((earnRes: any) => {
             this.e = earnRes.earnings;
             console.log(this.e)
             this.initCallStack();
@@ -100,8 +102,6 @@ export class AllInComponent implements OnInit, OnChanges {
       });
     });
   };
-
-
 
   initCallStack(){
     this.calcRoe();

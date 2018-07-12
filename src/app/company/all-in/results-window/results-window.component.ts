@@ -1,4 +1,6 @@
 import { Component, OnInit, OnChanges, Input, EventEmitter } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { mdbIcon } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-results-window',
@@ -9,7 +11,19 @@ export class ResultsWindowComponent implements OnInit {
   @Input() AllinResults;
   display = false;
   public results;
-  constructor() { }
+
+  public barInfo = {
+    earningsGrowth: null,
+    eps: null,
+    epsSurprise: null,
+    pb: null,
+    pegRation: null,
+    roe: null
+  };
+
+  constructor(private Router:Router) {
+
+   }
 
   ngOnInit() {
   }
@@ -19,7 +33,14 @@ export class ResultsWindowComponent implements OnInit {
     this.results = res;
     console.log('got it', res)
     })
+    this.Router.events.subscribe( (res) =>{
+      console.log('HEYO!')
+      this.wipeResults();
+    });
   };
-
+  wipeResults(){
+    this.results = null;
+    this.display = false;
+  }
 
 }
