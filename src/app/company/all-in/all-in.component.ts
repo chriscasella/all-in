@@ -34,6 +34,8 @@ interface AllInInterface {
 export class AllInComponent implements OnInit, OnChanges {
   @Input() CompanySymbol;
   @Output() AllinResults = new EventEmitter();
+  @Output() ReadableResultsEmitter = new EventEmitter();
+
   companySym;
   f:any;//financials object
   s:any;//stats object
@@ -43,29 +45,44 @@ export class AllInComponent implements OnInit, OnChanges {
   results = {
     pb: {
       bool: false,
-      pbRatio: 0
+      value: 0,
+      display: 'PB Ratio',
+      longDisplay: 'Price-to-Book Ratio'
     },
     eps: {
       bool: false,
-      actualEpsDiff: 0
+      value: 0,
+      display:'EPS',
+      longDisplay:'Earnings Per Share'
     },
     roe:{
       bool:false,
-      roe: 0
+      value: 0,
+      display: 'RoE',
+      longDisplay: 'Return on Equity'
     },
     epsSurprise:{
       bool:false,
-      epsSurprise: 0
+      value: 0,
+      display: 'Earnings Surprise',
+      longDisplay: 'Earnings Surprise'
     },
     earningsGrowth:{
       bool: false,
-      yap: 0,
+      value: 0,
+      display: 'Earnings Growth',
+      longDisplay: 'Earnings Growth'
     },
     pegRatio:{
       bool: false,
-      peg: 0
+      value: 0,
+      display: 'PEG Ratio',
+      longDisplay: 'Price/Earnings to Growth'
     }
   }
+
+  readableResults = [];
+
   constructor(public StockService:StockService) { 
   }
 
@@ -111,11 +128,35 @@ export class AllInComponent implements OnInit, OnChanges {
     this.calcEpsSurprise();
     this.calcEarningsGrowth();
     this.emitResults();
+    this.initReadableResults();
   };
-
   emitResults(){
     this.AllinResults.emit(this.results);
   };
+
+  initReadableResults(){
+    this.makeReadableResults();
+  };
+
+  makeReadableResults(){
+    const res = this.results;
+    Object.keys(res).forEach((key)=> {
+      const ele = res[key];
+      const newObj = {
+        bool : ele.bool,
+        value: ele.value,
+        display: ele.display,
+        longDisplay: ele.longDisplay
+      };
+      this.readableResults.push(newObj);
+    });
+    Object.keys(res).length == this.readableResults.length ? this.emitReadableResults() : '';
+  };
+
+  emitReadableResults(){
+    this.ReadableResultsEmitter.emit(this.readableResults);
+  };
+
   calcPbRatio(){
     //more info https://www.investopedia.com/terms/p/price-to-bookratio.asp
     const tA = this.f[0].totalAssets;
@@ -124,17 +165,19 @@ export class AllInComponent implements OnInit, OnChanges {
     const bvps = ((tA - tL) / sO) //book value per share
     const mpps = this.q.latestPrice;
     const pbRatioCalc = mpps / bvps;
-    this.results.pb.pbRatio = pbRatioCalc;
+    this.results.pb.value = pbRatioCalc;
     pbRatioCalc > 1 ? this.results.pb.bool = true : this.results.pb.bool = false;
   };
+  
   calcEps(){
     //more info https://www.nasdaq.com/investing/dozen/earnings-per-share.aspx
     const recentEps = this.e[0].actualEPS;
     const lastEPS = this.e[3].actualEPS;
     const epsCalc = recentEps - lastEPS;
-    this.results.eps.actualEpsDiff = epsCalc;
+    this.results.eps.value = epsCalc;
     epsCalc > 0 ? this.results.eps.bool = true : this.results.eps.bool = false;
   };
+
   calcRoe(){
     //more info https://www.investopedia.com/terms/r/returnonequity.asp
     const netIncome = this.f.map(element => element.netIncome).reduce((acc, val)=>{
@@ -145,14 +188,13 @@ export class AllInComponent implements OnInit, OnChanges {
     })/(this.f.length); //shareholder equity
     let roe = (netIncome / she) * 1000;
     roe >= 60 ? this.results.roe.bool = true : this.results.roe.bool = false;
-    this.results.roe.roe = roe;
-    console.log(this.results)
-  }
+    this.results.roe.value = roe;
+  };
   calcEpsSurprise(){
     const epsSurprise = this.e.map(element => element.EPSSurpriseDollar).reduce((acc, val) =>{
       return acc + val;
     });
-    this.results.epsSurprise.epsSurprise = epsSurprise;
+    this.results.epsSurprise.value = epsSurprise;
     epsSurprise > 0 ? this.results.epsSurprise.bool = true : this.results.epsSurprise.bool = false; 
   };
 
@@ -161,7 +203,7 @@ export class AllInComponent implements OnInit, OnChanges {
     const yap = this.e[0].yearAgoChangePercent;
     const res = this.results.earningsGrowth;
     (ecp > 0 && yap > 0) ? res.bool = true : res.bool = false;
-    res.yap = yap;
+    res.value = yap;
   };
 
   calcPegRatio(){
@@ -173,7 +215,7 @@ export class AllInComponent implements OnInit, OnChanges {
     const pe = price/eps;
     const peg = pe/growth;
     const res = this.results.pegRatio;
-    res.peg = peg;
+    res.value = peg;
     peg < 1 ? res.bool = true : res.bool = false;
   };
 }

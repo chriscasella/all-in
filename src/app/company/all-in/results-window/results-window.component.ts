@@ -9,9 +9,11 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class ResultsWindowComponent implements OnInit {
   @Input() AllinResults;
+  @Input() ReadableResults;
+  
   display = false;
   public results;
-
+  public readableResults;
   public barInfo = {
     earningsGrowth: null,
     eps: null,
@@ -32,15 +34,16 @@ export class ResultsWindowComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
-    this.AllinResults.subscribe(res =>{
-    this.display = true;
-    this.results = res;
-    console.log('got it', res)
+    // this.AllinResults.subscribe(res =>{
+    // this.display = true;
+    // this.results = res;
+    // console.log('got it', res)
+    // })
+    this.ReadableResults.subscribe( res =>{
+      this.display = true;
+      this.readableResults = res;
+      console.log('got it', res)
     })
-    this.Router.events.subscribe( (res) =>{
-      console.log('HEYO!')
-      this.wipeResults();
-    });
   };
   wipeResults(){
     this.results = null;
