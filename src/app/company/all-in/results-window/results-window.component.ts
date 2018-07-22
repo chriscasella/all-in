@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { mdbIcon } from 'angular-bootstrap-md';
+
 
 @Component({
   selector: 'app-results-window',
@@ -20,6 +20,10 @@ export class ResultsWindowComponent implements OnInit {
     pegRation: null,
     roe: null
   };
+
+  public test =[
+
+  ];
 
   constructor(private Router:Router) {
 

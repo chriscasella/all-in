@@ -29,6 +29,7 @@ import { ResultsWindowComponent } from './company/all-in/results-window/results-
 
 import fontawesome from '@fortawesome/fontawesome';
 import {faCheckSquare, faWindowClose} from '@fortawesome/fontawesome-free-solid';
+import { RwDisplayBoxComponent } from './company/all-in/results-window/rw-display-box/rw-display-box.component';
 
 
 
@@ -54,7 +55,8 @@ const Routes = [
     NavComponent,
     InfoCardComponent,
     AllInComponent,
-    ResultsWindowComponent
+    ResultsWindowComponent,
+    RwDisplayBoxComponent
   ],
   imports: [
     BrowserModule,
