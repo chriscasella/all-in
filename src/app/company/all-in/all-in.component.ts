@@ -34,7 +34,7 @@ interface AllInInterface {
 export class AllInComponent implements OnInit, OnChanges {
   @Input() CompanySymbol;
   @Output() AllinResults = new EventEmitter();
-  @Output() ReadableResultsEmitter = new EventEmitter();
+  @Output() ReadableResults = new EventEmitter();
 
   companySym;
   f:any;//financials object
@@ -154,7 +154,7 @@ export class AllInComponent implements OnInit, OnChanges {
   };
 
   emitReadableResults(){
-    this.ReadableResultsEmitter.emit(this.readableResults);
+    this.ReadableResults.emit(this.readableResults);
   };
 
   calcPbRatio(){

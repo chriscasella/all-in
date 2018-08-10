@@ -26,10 +26,10 @@ import { NavComponent } from './nav/nav.component';
 import { InfoCardComponent } from './company/info-card/info-card.component';
 import { AllInComponent } from './company/all-in/all-in.component';
 import { ResultsWindowComponent } from './company/all-in/results-window/results-window.component';
-
-import fontawesome from '@fortawesome/fontawesome';
-import {faCheckSquare, faWindowClose} from '@fortawesome/fontawesome-free-solid';
 import { RwDisplayBoxComponent } from './company/all-in/results-window/rw-display-box/rw-display-box.component';
+
+// import fontAwesome from '@font-awesome'
+// import {faCheckSquare, faWindowClose} from '@font-awesome';
 
 
 

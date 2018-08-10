@@ -9,8 +9,8 @@ import { HttpResponse } from 'selenium-webdriver/http';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit, OnChanges {
-  @Output() CompanyInfoCard:EventEmitter<any> = new EventEmitter();
-  @Output() CompanySymbol:EventEmitter<any> = new EventEmitter();
+  @Output() CompanyInfoCard: EventEmitter<any> = new EventEmitter();
+  @Output() CompanySymbol: EventEmitter<any> = new EventEmitter();
 
   companySym;
   quote;
@@ -88,14 +88,20 @@ export class CompanyComponent implements OnInit, OnChanges {
       console.log(this.companySym);
       this.StockService.getQuote(this.companySym).subscribe(res =>{
         console.log('quote', res);
-        const companyInfo = {
-          title: res.companyName,
-          text1: res.symbol,
-          text2: res.sector
+        const r = res;
+        interface companyInfo {
+          title: string,
+          text1: string,
+          text2: string
+        }
+        const companyInfo companyInfo = {
+          title: r.companyName,
+          text1: r.symbol,
+          text2: r.sector
         }
         this.CompanyInfoCard.emit(companyInfo);
         this.CompanySymbol.emit(this.companySym);
-        this.quote = res;
+        this.quote = r;
       });
       this.StockService.getChartData(this.companySym, '1m').subscribe( res => {
         this.parseChartData('1m',res);

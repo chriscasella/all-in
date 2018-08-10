@@ -7,7 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './results-window.component.html',
   styleUrls: ['./results-window.component.scss']
 })
-export class ResultsWindowComponent implements OnInit {
+export class ResultsWindowComponent implements OnInit, OnChanges {
   @Input() AllinResults;
   @Input() ReadableResults;
   
