@@ -8,6 +8,7 @@ import { HttpResponse } from 'selenium-webdriver/http';
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
 })
+
 export class CompanyComponent implements OnInit, OnChanges {
   @Output() CompanyInfoCard: EventEmitter<any> = new EventEmitter();
   @Output() CompanySymbol: EventEmitter<any> = new EventEmitter();
@@ -25,7 +26,7 @@ export class CompanyComponent implements OnInit, OnChanges {
     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
   };
 
-  chartButtons = [
+  public chartButtons = [
     {
       type:'5y',
       desc:'5 year',
@@ -66,7 +67,7 @@ export class CompanyComponent implements OnInit, OnChanges {
       desc: '1 day',
       click: 'getChartData(1d)'
     }
-  ]
+  ];
   public lineChartType: string = 'line';
   public lineChartLegend: boolean = false;
   public lineChartOptions: any = {
@@ -81,25 +82,20 @@ export class CompanyComponent implements OnInit, OnChanges {
   public lineChartColors: Array<any> = [];
   constructor(private route:ActivatedRoute,
               private StockService:StockService) { }
-              
+
   ngOnInit() {
-    this.route.params.subscribe( res => {
+    this.route.params.subscribe( (res) => {
       this.companySym = res['companySymbol']
       console.log(this.companySym);
       this.StockService.getQuote(this.companySym).subscribe(res =>{
         console.log('quote', res);
         const r = res;
-        interface companyInfo {
-          title: string,
-          text1: string,
-          text2: string
-        }
-        const companyInfo companyInfo = {
+        const rawCompanyInfo = {
           title: r.companyName,
           text1: r.symbol,
           text2: r.sector
         }
-        this.CompanyInfoCard.emit(companyInfo);
+        this.CompanyInfoCard.emit(rawCompanyInfo);
         this.CompanySymbol.emit(this.companySym);
         this.quote = r;
       });
