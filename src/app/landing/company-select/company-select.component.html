@@ -4,7 +4,7 @@
       <h1 class="h1 title-effect">All In</h1>
     </strong> -->
   </div>
-  <div class="input-group md-form form-sm form-1 pl-0">
+  <div class="input-group company-select-parent">
     <div class="input-group-prepend">
       <span
         (click)="getCompany(companySelector.value)" 
@@ -14,11 +14,11 @@
       </span>
     </div>
     <input #companySelector 
-      class="form-control my-0 py-1  justify-content-center" 
+      class="form-control company-select" 
       type="text" 
       placeholder="Enter in Company Name or Symbol" 
       aria-label="Search" 
-      (keydown)="findSymbol(companySelector.value)"
+      (keyup)="findSymbol(companySelector.value)"
       (keyup.enter)="getCompany(companySelector.value)"
       >
   </div>
