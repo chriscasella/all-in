@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Constants } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
 
-  constructor(private http:HttpClient) { }
-
+  constructor(private http:HttpClient, private Constants:Constants) { }
   getCompany(sym){
     return this.http.get('https://api.iextrading.com/1.0/stock/'+ sym +'/company');
   }
@@ -33,4 +33,8 @@ export class StockService {
   getEarnings(sym){
     return this.http.get('https://api.iextrading.com/1.0/stock/' + sym + '/earnings');
   }
+
+  getBatch(){
+    console.log('yo!')
+  };
 }

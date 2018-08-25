@@ -45,12 +45,13 @@
 
 
 .auto-complete-container{
-    // margin-top: -3.4%;
+    margin-top: 2.6%;
     border: none;
     // border-right: solid 1px black;
     // border-bottom: solid 1px black;
     // border-left: solid 1px black;
     // border-top: none;
+    flex:auto;
     overflow:scroll;
     max-height:10em;
     max-width: 100%;
@@ -63,10 +64,11 @@
 .symbol-item{
     color: purple;
     border-radius: 0;
+    background-color: white;
 }
 
 .symbol-item:hover{
-    background-color: rgba(255, 17, 255, 0.589);
+    background-color: #C6DABF;
 }
 
 .title-effect{
