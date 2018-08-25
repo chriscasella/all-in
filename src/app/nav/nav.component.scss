@@ -3,3 +3,9 @@
     height: 8vh;
     background-color: #114B5F;
 }
+
+@media screen and (max-width: 600){
+    .main-nav {
+        height: 14vh;
+    }
+}

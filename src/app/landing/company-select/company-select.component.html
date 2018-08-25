@@ -14,7 +14,7 @@
       </span>
     </div>
     <input #companySelector 
-      class="form-control company-select" 
+      class="company-select__input" 
       type="text" 
       placeholder="Enter in Company Name or Symbol" 
       aria-label="Search" 
@@ -23,7 +23,7 @@
       >
   </div>
   <div *ngIf="filteredSymbols != null" class="auto-complete-container" id="style-1">
-    <div #autocomplete *ngFor="let sym of filteredSymbols" class="form-control my-0 py-1 auto-complete symbol-item">
+    <div #autocomplete *ngFor="let sym of filteredSymbols" class="my-0 py-1 auto-complete symbol-item">
      <div class="" (click)="getCompany(sym.Symbol)"> {{sym.Symbol}} <span class="company-name-ac">{{sym.Name}}</span></div>
     </div>
   </div>
