@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
+import 'rxjs'
 
 // Material Modules
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // External Libraries
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,11 +25,24 @@ import { CompanyComponent } from './company/company.component';
 import { NavComponent } from './nav/nav.component';
 import { InfoCardComponent } from './company/info-card/info-card.component';
 import { AllInComponent } from './company/all-in/all-in.component';
+import { ResultsWindowComponent } from './company/all-in/results-window/results-window.component';
+import { RwDisplayBoxComponent } from './company/all-in/results-window/rw-display-box/rw-display-box.component';
+import { MainComponent } from './main/main.component';
+
+// import fontAwesome from '@font-awesome'
+// import {faCheckSquare, faWindowClose} from '@font-awesome';
+
+
 
 const Routes = [
   {
-    path: '', pathMatch: 'full',
-    component:AppComponent
+    path: '',
+    redirectTo:'/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: MainComponent
   },
   {
     path: 'company/:companySymbol',
@@ -45,7 +60,10 @@ const Routes = [
     CompanyComponent,
     NavComponent,
     InfoCardComponent,
-    AllInComponent
+    AllInComponent,
+    ResultsWindowComponent,
+    RwDisplayBoxComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +74,10 @@ const Routes = [
     WavesModule,
     MatTabsModule,
     MatButtonModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule
   ],
   providers: [Constants, StockService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -8,9 +8,10 @@ import { HttpResponse } from 'selenium-webdriver/http';
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
 })
+
 export class CompanyComponent implements OnInit, OnChanges {
-  @Output() CompanyInfoCard:EventEmitter<any> = new EventEmitter();
-  @Output() CompanySymbol:EventEmitter<any> = new EventEmitter();
+  @Output() CompanyInfoCard: EventEmitter<any> = new EventEmitter();
+  @Output() CompanySymbol: EventEmitter<any> = new EventEmitter();
 
   companySym;
   quote;
@@ -25,7 +26,7 @@ export class CompanyComponent implements OnInit, OnChanges {
     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
   };
 
-  chartButtons = [
+  public chartButtons = [
     {
       type:'5y',
       desc:'5 year',
@@ -66,7 +67,7 @@ export class CompanyComponent implements OnInit, OnChanges {
       desc: '1 day',
       click: 'getChartData(1d)'
     }
-  ]
+  ];
   public lineChartType: string = 'line';
   public lineChartLegend: boolean = false;
   public lineChartOptions: any = {
@@ -81,21 +82,22 @@ export class CompanyComponent implements OnInit, OnChanges {
   public lineChartColors: Array<any> = [];
   constructor(private route:ActivatedRoute,
               private StockService:StockService) { }
-              
+
   ngOnInit() {
-    this.route.params.subscribe( res => {
+    this.route.params.subscribe( (res) => {
       this.companySym = res['companySymbol']
       console.log(this.companySym);
       this.StockService.getQuote(this.companySym).subscribe(res =>{
         console.log('quote', res);
-        const companyInfo = {
-          title: res.companyName,
-          text1: res.symbol,
-          text2: res.sector
+        const r = res;
+        const rawCompanyInfo = {
+          title: r.companyName,
+          text1: r.symbol,
+          text2: r.sector
         }
-        this.CompanyInfoCard.emit(companyInfo);
+        this.CompanyInfoCard.emit(rawCompanyInfo);
         this.CompanySymbol.emit(this.companySym);
-        this.quote = res;
+        this.quote = r;
       });
       this.StockService.getChartData(this.companySym, '1m').subscribe( res => {
         this.parseChartData('1m',res);
@@ -125,22 +127,26 @@ export class CompanyComponent implements OnInit, OnChanges {
     this.lineChartData.length > 0 ? this.lineChartData = [] : '';
     this.lineChartLabels.length > 0 ? this.lineChartLabels = [] : '';
     const chartLabels = data.map(element => {
-      return element.label;
+       if (element.marketAverage > -1){
+        return element.label;
+      } ;
     });
     this.lineChartLabels = chartLabels;
     const chartData = data.map(element => {
-      return element.marketAverage;
+      if (element.marketAverage > -1){
+        return element.marketAverage;
+      } ;
     });
     const chartPayLoad = {
       data: chartData,
       label: 'Average'
     };
     this.lineChartData.push(chartPayLoad);
-    
+
     const lcd = this.lineChartData[0].data;
     console.log(lcd)
     const highMinusLow = lcd[lcd.length - 1] - lcd[0];
-    ( highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
+    (highMinusLow > 0) ? this.lineChartColors.push(this.greenChart) : '';
     // console.log('chartPayLoad', chartPayLoad);
 
   };
