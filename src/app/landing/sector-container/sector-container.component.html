@@ -1,3 +1,8 @@
-<p>
-  sector-container works!
-</p>
+<div *ngIf="sectors != null">
+  <div 
+    class="sector-card"
+  *ngFor="let sector of sectors">
+    {{sector.name}}
+    {{sector.performance}}
+  </div>
+</div>
