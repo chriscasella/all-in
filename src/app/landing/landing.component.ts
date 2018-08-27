@@ -7,11 +7,10 @@ import { StockService } from '../stock.service';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-
   constructor( private StockService:StockService) { }
 
   ngOnInit() {
-    this.StockService.getBatch().subscribe()
+
   }
 
 }

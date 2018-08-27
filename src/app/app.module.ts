@@ -28,6 +28,8 @@ import { AllInComponent } from './company/all-in/all-in.component';
 import { ResultsWindowComponent } from './company/all-in/results-window/results-window.component';
 import { RwDisplayBoxComponent } from './company/all-in/results-window/rw-display-box/rw-display-box.component';
 import { MainComponent } from './main/main.component';
+import { SectorContainerComponent } from './landing/sector-container/sector-container.component';
+import { SectorInfoComponent } from './landing/sector-container/sector-info/sector-info.component';
 
 // import fontAwesome from '@font-awesome'
 // import {faCheckSquare, faWindowClose} from '@font-awesome';
@@ -63,7 +65,9 @@ const Routes = [
     AllInComponent,
     ResultsWindowComponent,
     RwDisplayBoxComponent,
-    MainComponent
+    MainComponent,
+    SectorContainerComponent,
+    SectorInfoComponent
   ],
   imports: [
     BrowserModule,
