@@ -1,9 +1,36 @@
-.sector-card{
+.sector-card-container__card {
     border: 1px black solid;
-    display: flex;
-    flex: auto;
-    flex-direction: row;
-    margin: 2em;
-    padding: 2em;
+    width:100%;
+    border-radius: 5px;
+    padding: 14px;
+    margin: 5px;
     // order: 2;
+}
+
+.sector-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 300px;
+}
+
+@media screen and (min-width: 600px){
+    .sector-card-container {
+        margin:auto;
+        width: 80%;
+        padding: 1em;
+        overflow: auto;
+        max-height: 500px;
+    }
+
+    .sector-card-container__card {
+        border: 1px black solid;
+        width:40%;
+        border-radius: 5px;
+        padding: 14px;
+        margin: 5px;
+        // order: 2;
+    }
+
 }

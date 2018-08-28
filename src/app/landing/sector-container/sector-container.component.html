@@ -1,6 +1,6 @@
-<div *ngIf="sectors != null">
+<div class="sector-card-container" *ngIf="sectors != null">
   <div 
-    class="sector-card"
+    class="sector-card-container__card"
   *ngFor="let sector of sectors">
     {{sector.name}}
     {{sector.performance}}
