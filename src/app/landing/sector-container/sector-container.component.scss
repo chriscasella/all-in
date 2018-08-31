@@ -1,33 +1,40 @@
+// Mobile First
+
 .sector-card-container__card {
-    border: 1px black solid;
-    width:100%;
-    border-radius: 5px;
+    border-bottom: 1px black solid;
+    background-color: #A7CCED;
     padding: 14px;
     margin: 5px;
     // order: 2;
 }
 
 .sector-card-container {
-    display: flex;
+    background-color: #63ADF2;
+    display: inline-block;
     flex-wrap: wrap;
+    width:100%;
     overflow: scroll;
     overflow-x: hidden;
     max-height: 300px;
+    justify-content: space-evenly;
 }
 
 @media screen and (min-width: 600px){
     .sector-card-container {
+        background-color: #63ADF2;
+        display: flex;
         margin:auto;
-        width: 80%;
-        padding: 1em;
+        width: 100%;
+        // padding: 1em;
         overflow: auto;
         max-height: 500px;
+        align-content: center;
+        justify-content: space-evenly;
     }
 
     .sector-card-container__card {
-        border: 1px black solid;
+        border-bottom: 1px black solid;
         width:40%;
-        border-radius: 5px;
         padding: 14px;
         margin: 5px;
         // order: 2;
