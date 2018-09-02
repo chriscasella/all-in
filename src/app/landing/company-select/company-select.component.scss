@@ -45,16 +45,12 @@
 
 
 .auto-complete-container{
-    margin-top: 2.6%;
+    margin-top: 1vh;
+    position: fixed;
     border: none;
-    // border-right: solid 1px black;
-    // border-bottom: solid 1px black;
-    // border-left: solid 1px black;
-    // border-top: none;
-    flex:auto;
     overflow:scroll;
     max-height:10em;
-    max-width: 100%;
+    min-width: 94%;
     overflow-x: hidden;
 }
 .company-name-ac{
@@ -105,7 +101,6 @@
 	background-color: rgba(233, 84, 233, 0.493);
 }
 
-@media screen and (max-width: 400px) {
    .auto-complete-container{
        max-width: 10%;
    }
@@ -113,6 +108,114 @@
        left: 2vw;
        width: 92vw
    }
+@media screen and (min-width: 600px) {
+    .input-group.md-form.form-sm.form-1 input{
+        border: 1px solid #bdbdbd;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+    .input-group.md-form.form-sm.form-2 input {
+        border: 1px solid #bdbdbd;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+    .input-group.md-form.form-sm.form-2 input.red-border  {
+        border: 1px solid #ef9a9a;
+    }
+    .input-group.md-form.form-sm.form-2 input.lime-border  {
+        border: 1px solid #cddc39;
+    }
+    .input-group.md-form.form-sm.form-2 input.amber-border  {
+        border: 1px solid #ffca28;
+    }
+
+    .company-select__input {
+    flex: auto;
+    }
+
+    .company-select-parent {
+    height: 5vh;
+    top: 1.5vh;
+    min-width:80vw;
+
+    }
+
+    .auto-complete{
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 10em;
+    }
+
+
+    .auto-complete-container{
+        margin-top: 2.6%;
+        border: none;
+        // border-right: solid 1px black;
+        // border-bottom: solid 1px black;
+        // border-left: solid 1px black;
+        // border-top: none;
+        flex:auto;
+        overflow:scroll;
+        max-height:10em;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    .company-name-ac{
+        font-size: small;
+    }
+
+    .symbol-item{
+        color: purple;
+        border-radius: 0;
+        background-color: white;
+    }
+
+    .symbol-item:hover{
+        background-color: #C6DABF;
+    }
+
+    .title-effect{
+        animation: 1s ease-in 0s 1 titleEffect;
+    }
+
+
+    @keyframes titleEffect {
+        from { opacity: 0}
+        to   { opacity: 1}
+    }
+
+
+    /* Track */
+    #style-1::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 0px;
+        width: 0%;
+        display:none;
+        background-color: #F5F5F5;
+    }
+
+    #style-1::-webkit-scrollbar
+    {
+        width:3px;
+        background-color: #F5F5F5;
+    }
+
+    #style-1::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: rgba(233, 84, 233, 0.493);
+    }
+
 }
 @media screen and (max-width: 320px) {
    .auto-complete-container{

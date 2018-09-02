@@ -11,12 +11,11 @@
 .sector-card-container {
     background-color: #63ADF2;
     display: inline-block;
-    flex-wrap: wrap;
     width:100%;
     overflow: scroll;
     overflow-x: hidden;
     max-height: 300px;
-    justify-content: space-evenly;
+
 }
 
 @media screen and (min-width: 600px){

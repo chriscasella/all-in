@@ -43,21 +43,21 @@ export class StockService {
       );
   }
 
-  getBatch(){
-    console.log(this.Constants)
-    const randSym[] = [];
-    const randNasdaqNum = Math.floor( Math.random() * this.Constants.NASDAQ.length);
-    const randNyseNum = Math.floor( Math.random() * this.Constants.NYSE.lentgh);
+//   getBatch(){
+//     console.log(this.Constants)
+//     const randSym = [];
+//     const randNasdaqNum = Math.floor( Math.random() * this.Constants.NASDAQ.length);
+//     const randNyseNum = Math.floor( Math.random() * this.Constants.NYSE.lentgh);
 
-    for(let i of 1..6){
-      console.log(NASDAQ)
-      const symbolChoser = Math.random();
-      const NASDAQ = this.Constants.NASDAQ[randNasdaqNum].Symbol;
-      const NYSE = this.Constants.NYSE[randNyseNum].Symbol;
-      symbolChoser > 0 ? randSym.push(NASDAQ) : randSym.push(NYSE);
-      console.log(NASDAQ, NYSE);
-    };
+//     for(let i of 1..6){
+//       console.log(NASDAQ)
+//       const symbolChoser = Math.random();
+//       const NASDAQ = this.Constants.NASDAQ[randNasdaqNum].Symbol;
+//       const NYSE = this.Constants.NYSE[randNyseNum].Symbol;
+//       symbolChoser > 0 ? randSym.push(NASDAQ) : randSym.push(NYSE);
+//       console.log(NASDAQ, NYSE);
+//     };
 
-    console.log(randSym);
-  };
+//     console.log(randSym);
+//   };
 }

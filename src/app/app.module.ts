@@ -31,8 +31,8 @@ import { MainComponent } from './main/main.component';
 import { SectorContainerComponent } from './landing/sector-container/sector-container.component';
 import { SectorInfoComponent } from './landing/sector-container/sector-info/sector-info.component';
 
-// import fontAwesome from '@font-awesome'
-// import {faCheckSquare, faWindowClose} from '@font-awesome';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { faCoffee }from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -70,6 +70,7 @@ const Routes = [
     SectorInfoComponent
   ],
   imports: [
+    AngularFontAwesomeModule,
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
