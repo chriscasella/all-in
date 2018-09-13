@@ -8,7 +8,7 @@ import { StockService } from '../stock.service';
 })
 export class LandingComponent implements OnInit {
   constructor( private StockService:StockService) { }
-
+  public sectors:boolean = false;
   ngOnInit() {
 
   }

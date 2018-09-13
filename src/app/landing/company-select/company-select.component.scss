@@ -19,14 +19,15 @@
 }
 
 .company-select__input {
-  flex: auto;
+    min-width: 80vw;
+    align-self: center;
 }
 
 .company-select-parent {
   height: 5vh;
   top: 1.5vh;
   min-width:80vw;
-
+  display: flex;
 }
 
 .auto-complete{
@@ -131,28 +132,28 @@
     }
 
     .company-select__input {
-    flex: auto;
+        min-width: 80vw;
     }
 
     .company-select-parent {
-    height: 5vh;
-    top: 1.5vh;
-    min-width:80vw;
-
+        height: 5vh;
+        top: 1.5vh;
+        min-width:80vw;
+        display: flex;
     }
 
     .auto-complete{
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
-    max-height: 10em;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+        max-height: 10em;
     }
 
 
